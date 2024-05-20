@@ -6,6 +6,7 @@ Routes:
 /: display “Hello HBNB!”
 /hbnb: display “HBNB”
 /c/<text>: display “C ” followed by the value of the text
+/number/<n>: display “n is a number” only if n is an integer
 """
 
 from flask import Flask
@@ -33,6 +34,22 @@ def c_params(text):
     """
     text_no_underscore = text.replace('_', ' ')
     return "C {}".format(text_no_underscore)
+
+@app.route('/python', defaults={'text': 'is_cool'})
+@app.route('/python/<text>')
+def python_params(text):
+    """
+    Display “Python ”, followed by the value of the text
+    """
+    text_no_underscore = text.replace('_', ' ')
+    return "Python {}".format(text_no_underscore)
+
+@app.route('/number/<int:n>')
+def number(n):
+    """
+    Display 'n' is a number only if n is an integer
+    """
+    return "{} is a number".format(n)
 
 if __name__ == '__main__':
     app.run(debug=True, host = '0.0.0.0', port = 5000)

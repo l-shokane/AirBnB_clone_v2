@@ -34,5 +34,14 @@ def c_params(text):
     text_no_underscore = text.replace('_', ' ')
     return "C {}".format(text_no_underscore)
 
+@app.route('/python', defaults={'text': 'is_cool'})
+@app.route('/python/<text>')
+def python_params(text):
+    """
+    Display “Python ”, followed by the value of the text
+    """
+    text_no_underscore = text.replace('_', ' ')
+    return "Python {}".format(text_no_underscore)
+
 if __name__ == '__main__':
     app.run(debug=True, host = '0.0.0.0', port = 5000)

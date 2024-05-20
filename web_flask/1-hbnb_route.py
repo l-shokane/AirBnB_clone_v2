@@ -18,7 +18,7 @@ def home ():
     """
     return 'Hello HBNB!'
 
-app.route('/hbnb')
+@app.route('/hbnb')
 def hbnb ():
     """
     hbnb: displays 'HBNB'
